@@ -6,6 +6,7 @@ resources :metals
 #  resources :metal_composite
 # end
 resources :metal_categories, except: [:destroy]
+resources :projects, except: [:destroy]
  
 get 'metals/:id/pair', to: 'metals#pair', as: 'new_metal_pair'
 post 'metals/:id/pair', to: 'metals#pairing'

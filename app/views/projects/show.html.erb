@@ -1,0 +1,24 @@
+<h1 align = 'center'><%= @project.name %></h1>
+
+
+ <div class = 'container'>
+    <div class = 'well col-md-8 col-md-offset-2'>
+        <p align ='left'><%= @project.description %></p>
+                <hr>
+        <p>
+            Start Date: <%= @project.start_date.strftime("%d-%B-%y") %>
+        </p>
+        <p>
+            End Date: <%= @project.end_date.strftime("%d-%B-%y") %>
+        </p>
+        <hr>
+        <div class = 'row'>
+            <%= link_to 'Edit Project', edit_project_path(@project), class: 'btn btn-warning btn-xs' %>
+            <%= link_to 'Back to All Projects', projects_path(@project), class: 'btn btn-primary btn-xs' %>
+        </div>
+    </div>
+</div>
+
+<h3 align = 'center'>Work Logs</h3>
+
+<p align = 'center'>In progress...</p>
