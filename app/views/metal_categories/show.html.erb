@@ -1,0 +1,19 @@
+<h1 align = 'center'>
+    <%= @metal_category.name %>
+            <%= link_to 'Edit', edit_metal_category_path(@metal_category), class: 'btn btn-xs btn-warning' %>
+</h1>
+
+<h3 align ='center'>
+    Metals Associating in This group
+</h3>
+
+<div align = 'center'>
+    [<%= link_to 'Back to Categories Listing Page', metal_categories_path %>]
+</div>
+
+<div align = 'center'>
+    <%= will_paginate @metals %>
+</div>
+
+<%= render 'metals/metal', obj: @metals %>
+

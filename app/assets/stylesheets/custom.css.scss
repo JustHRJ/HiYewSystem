@@ -1,0 +1,56 @@
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+.jumbotron {
+    height: 600px;
+    background-image: asset-url('home-page.jpg');
+    background-size: cover;
+    margin-top: 10px;
+}
+
+.right-float {
+    float: right;
+}
+
+.footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: black;
+    padding: 5px;
+}
+
+.footer-link {
+    color: white;
+}
+
+.footer-link:hover {
+    text-decoration: none;
+    color: white;
+}
+
+#foot {
+    color: white;
+}
+
+.index-title {
+    color: black;
+    text-align: center;
+}
+
+.index-title:hover {
+    text-decoration: none;
+}
+
+.badge {
+    background-color: #CEF6F5;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+
+.container {
+    padding-bottom: 15px;
+}

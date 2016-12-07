@@ -1,0 +1,23 @@
+  <%= form_for(:metal_pair, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+      <% @metal_pair.attributes.each_pair do |c, d| %>
+        <% if c == 'id' || c == 'created_at' || c == 'updated_at' %>
+        
+        <% else %>
+        <div class="form-group">
+            <div class="col-sm-2 control-label">
+                <%= f.label c %>
+            </div>
+            <div class="col-sm-10">
+                <%= f.number_field c, class: 'form-control', :step => 0.01 %>
+            </div>
+        </div>
+          <% end %>
+      <% end %>
+  
+ 
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: 'btn btn-success btn-lg' %>
+    </div>
+  </div>
+<% end %>

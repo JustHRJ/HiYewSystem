@@ -1,0 +1,21 @@
+<% obj.each do |metal| %>
+    <div class = 'container'>
+        <div class = 'well col-md-8 col-md-offset-2'>
+            <div align = 'center'>
+                <h1><%= link_to metal.name, metal_path(metal), class: 'index-title' %></h1>
+            </div> 
+            <hr>
+            <p align ='left'><%= metal.metal_code %></p>
+            
+            <% if metal.metal_categories.any? %>
+                <p><%= render metal.metal_categories %></p>
+            <% end %>
+            <hr>
+            <div class = 'row'>
+                <%= link_to 'Edit Metal', edit_metal_path(metal), class: 'btn btn-warning btn-xs' %>
+                <%= link_to 'Delete Metal', metal_path(metal), method: :delete, data: {confirm: "Are you sure you want to delete this?"}, class: 'btn btn-danger btn-xs' %>
+ 
+            </div>
+        </div>
+    </div>
+<% end %>
