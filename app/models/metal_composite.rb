@@ -1,4 +1,4 @@
 class MetalComposite < ActiveRecord::Base
-   has_one :metal
+   has_one :metal, dependent:true
     
 end

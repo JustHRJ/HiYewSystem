@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161207125952) do
+ActiveRecord::Schema.define(version: 20161210150717) do
 
   create_table "metal_categories", force: :cascade do |t|
     t.string   "name"
@@ -31,6 +31,11 @@ ActiveRecord::Schema.define(version: 20161207125952) do
   create_table "metal_metal_categories", force: :cascade do |t|
     t.integer "metal_id"
     t.integer "metal_category_id"
+  end
+
+  create_table "metal_metals", force: :cascade do |t|
+    t.integer "metal_associator_id"
+    t.integer "metal_associating_id"
   end
 
   create_table "metals", force: :cascade do |t|
