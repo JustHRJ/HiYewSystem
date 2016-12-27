@@ -1,0 +1,94 @@
+<h1 align = 'center'><%= @metal.name %></h1>
+
+
+ <div class = 'container'>
+    <div class = 'well col-md-8 col-md-offset-2'>
+        <h4>Metal Code</h4>
+        <hr>
+        <p align ='left'><%= @metal.metal_code %></p>
+            <% if @metal.metal_categories.any? %>
+                <p><%= render @metal.metal_categories %></p>
+            <% end %>
+        <hr>
+        <div class = 'row'>
+            <%= link_to 'Edit Metal', edit_metal_path(@metal), class: 'btn btn-warning btn-xs' %>
+            <%= link_to 'Back to All Metals', metals_path, class: 'btn btn-primary btn-xs' %>
+        </div>
+    </div>
+</div>
+
+<h2 align ='center'>Metal Composite 
+<% if @metal.metal_composite %>
+ <%= link_to "Edit", edit_metal_pair_path(@metal), class: 'btn btn-xs btn-warning' %></h2>
+<table class = 'table'>
+    <thead>
+        <th>
+            Iron
+        </th>
+        <th>
+            Potassium
+        </th>
+        <th>
+            Calcium
+        </th>
+        <th>
+            Others
+        </th>
+    </thead>
+    <tr>
+        <td>
+            <%= @metal.metal_composite.iron %>
+        </td>
+        <td>
+            <%= @metal.metal_composite.potassium %>
+        </td>
+        <td>
+            <%= @metal.metal_composite.calcium %>
+        </td>
+        <td>
+            <%= @metal.metal_composite.others %>
+        </td>
+    </tr>
+</table>
+<% else %>
+<div align = 'center'>
+    <%= link_to 'Add New Composite', new_metal_pair_path(@metal), class: 'btn btn-primary' %>
+</div>
+<% end %>
+<h2 align = 'center'>Afflilated Metals</h2>
+<% if @metal.metal_associates.any? %>
+<% @metal.metal_associates.each do |metal| %>
+<div align = 'center'>
+    <%= metal.name %>
+</div>
+<% end %>
+<div align = 'center'>
+ <%= link_to "Reset Associations", new_metal_metal_associate_path(@metal), class: 'btn btn-danger' %>   
+</div>
+ 
+<% else %>
+<div align = 'center'>
+        <%= link_to "Add New Associations", new_metal_metal_associate_path(@metal), class: 'btn btn-primary' %>    
+</div>
+<% end %>
+
+
+<h2 align= 'center'>
+    Associated Metals
+</h2>
+
+<% if @metal.metal_associate_to.any? %>
+<% @metal.metal_associate_to.each do |metal| %>
+<div align = 'center'>
+    <%= metal.name %>
+</div>
+<% end %>
+<div align = 'center'>
+ <%= link_to "Reset Associations", new_metal_metal_associate_path(@metal), class: 'btn btn-danger' %>   
+</div>
+ 
+<% else %>
+<div align = 'center'>
+        <%= link_to "Add New Associations", new_metal_metal_associate_path(@metal), class: 'btn btn-primary' %>    
+</div>
+<% end %>

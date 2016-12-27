@@ -94,7 +94,19 @@ class MetalsController < ApplicationController
         flash[:danger] ='The composite added is more or less than 100. Please calculate again.'
         render 'editPair'
       end
+   end
+   
+   
+   def search
+      if params[:metal]
+         @metal = Metal.search_by_name(params[:metal])
+      end
       
+      if @metal
+       render partial: 'lookup'
+       else
+         render status: :not_found, nothing:true
+      end
    end
    
    private

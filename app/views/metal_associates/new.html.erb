@@ -1,0 +1,29 @@
+<h1 align = 'center'>Adding Association to <%= @metal.name %></h1>
+
+
+<%= render 'shared/errors', obj: @metal %>
+ 
+ <div class = "row">
+    <div class = 'col-xs-12'>
+        <%= form_for(:metal_associate, :html => {class: "form-horizontal", role: "form"}, url: metal_metal_associates_path) do |f| %>
+            <div class="form-group">
+                <div class = 'row'>
+                    <div class="col-sm-offset-2 col-sm-8">
+                        <%= f.collection_check_boxes :metal_associating_ids, Metal.all, :id, :name do |cb| %>
+                            <% if cb.text != @metal.name %>
+                            <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
+                            <% end %>
+                        <% end %>
+                    </div> 
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-8">
+                    <%= f.submit class: 'btn btn-success btn-lg'%>
+                </div>
+            </div>
+        <% end %>
+    </div>
+ </div>
+

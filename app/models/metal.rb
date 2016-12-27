@@ -13,4 +13,22 @@ class Metal < ActiveRecord::Base
     
     validates :name, presence:true, uniqueness: {case_sensitive: false}, length: {minimum: 3, maximum: 25}
     validates :metal_code, presence: true, uniqueness: {case_sensitive: false}
+    
+    
+    
+    def self.search_by_name(param)
+        return User.none if param.blank?
+        param.strip!
+        param.downcase!
+        (name_matches(param)).uniq        
+    end
+    
+    
+    def self.name_matches(param)
+        matches('name', param)
+    end
+    
+    def self.matches(field_name, param)
+        where("lower(#{field_name}) like ?", "%#{param}%")
+    end
 end

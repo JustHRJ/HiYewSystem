@@ -2,17 +2,21 @@ Rails.application.routes.draw do
  
  
 root 'pages#home'
-resources :metals 
-#  resources :metal_composite
-# end
+resources :metals do
+ resources :metal_associates
+end
+
 resources :metal_categories, except: [:destroy]
-resources :projects, except: [:destroy]
+resources :projects, except: [:destroy] do
+ resources :project_logs
+end
  
 get 'metals/:id/pair', to: 'metals#pair', as: 'new_metal_pair'
 post 'metals/:id/pair', to: 'metals#pairing'
 get 'metals/:id/pair/edit', to: 'metals#editPair', as: 'edit_metal_pair'
 post 'metals/:id/pair/edit', to: 'metals#updatePair'
  
+get 'search_metals', to: 'metals#search'
 end
 
 

@@ -11,6 +11,14 @@
         <p>
             End Date: <%= @project.end_date.strftime("%d-%B-%y") %>
         </p>
+         <p>
+             Completed: 
+             <% if @project.project_complete %>
+                 Yes, <%= @project.completed_time.strftime("%d-%B-%y") %>
+             <% else %>
+                 No
+             <% end %>
+         </p>
         <hr>
         <div class = 'row'>
             <%= link_to 'Edit Project', edit_project_path(@project), class: 'btn btn-warning btn-xs' %>
@@ -21,4 +29,19 @@
 
 <h3 align = 'center'>Work Logs</h3>
 
-<p align = 'center'>In progress...</p>
+<% if @project.project_logs.any? %>
+    <% @project.project_logs.each do |log| %>
+        <div align = 'center'>
+            <p>Heading: <%= log.heading %></p>
+            <p>Details: <%= log.details %></p>
+            <%= link_to 'Edit', edit_project_project_log_path(@project, log), class: 'btn btn-warning btn-xs' %>
+            <%= link_to 'Delete', project_project_log_path(@project, log), method: :delete, data: {confirm: "Are You Sure?" }, class: 'btn btn-danger btn-xs' %>
+        </div>
+    <% end %>
+
+<% else %>
+    <div align = 'center'>
+        <%= link_to "Add Log", new_project_project_log_path(@project), class: 'btn btn-success btn-xs' %>
+    </div>
+    
+<% end %>

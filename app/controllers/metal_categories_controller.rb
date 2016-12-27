@@ -12,7 +12,6 @@ class MetalCategoriesController < ApplicationController
       else
          render 'new'
       end
-   
    end
    
    def show
@@ -37,7 +36,6 @@ class MetalCategoriesController < ApplicationController
       else
          render 'edit'
       end
-       
    end
    
    private 

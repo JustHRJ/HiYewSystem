@@ -29,19 +29,19 @@ class ProjectsController < ApplicationController
    end
    
    def update
-       @project = Project.find(params[:id])
-       if @project.update(project_params)
+        @project = Project.find(params[:id])
+        if @project.update(project_params)
            flash[:success] = "Project has been successfully edited"
            redirect_to project_path(@project)
-       else
+        else
            render 'edit'
-       end
+        end
        
    end
     
     
     private
     def project_params
-        params.require(:project).permit(:name, :description, :start_date, :end_date)
+        params.require(:project).permit(:name, :description, :start_date, :end_date, :project_complete)
     end
 end

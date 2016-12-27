@@ -28,7 +28,7 @@
     </div>
   </div>
 
-<div class="form-group">
+  <div class="form-group">
     <div class="col-sm-2 control-label">
         <%= f.label :end_date %>
     </div>
@@ -37,6 +37,18 @@
     </div>
   </div>
  
+ <% if form_type == 'edit' %>
+ 
+ <div class="form-group">
+    <div class="col-sm-2 control-label">
+        <%= f.label :project_complete %>
+    </div>
+    <div class="col-sm-2">
+      <%= f.check_box :project_complete, class: 'form-control' %>
+    </div>
+  </div>
+ 
+ <% end %>
  
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">

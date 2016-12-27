@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161210150717) do
+ActiveRecord::Schema.define(version: 20161216080741) do
 
   create_table "metal_categories", force: :cascade do |t|
     t.string   "name"
@@ -46,6 +46,14 @@ ActiveRecord::Schema.define(version: 20161210150717) do
     t.integer  "metal_composite_id"
   end
 
+  create_table "project_logs", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "details"
+    t.string   "heading"
+    t.integer  "project_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -53,6 +61,8 @@ ActiveRecord::Schema.define(version: 20161210150717) do
     t.datetime "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "project_complete", default: false
+    t.datetime "completed_time"
   end
 
 end
