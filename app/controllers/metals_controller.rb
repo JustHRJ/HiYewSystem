@@ -109,6 +109,32 @@ class MetalsController < ApplicationController
       end
    end
    
+   
+   def advance_search
+      
+   end
+   
+   def search_advance_metal
+      if params[:iron] || params[:calcium] || params[:potassium] || params[:others]
+         @metals = Metal.all
+         @metal = []
+        
+         @metals.each do |metal|
+            if metal.metal_composite
+               composite = metal.metal_composite
+               if (composite.iron == params[:iron][0].to_f) && (composite.calcium == params[:calcium][0].to_f) && (composite.potassium == params[:potassium][0].to_f) && (composite.others == params[:others][0].to_f)
+                  @metal << metal
+               end
+            end
+         end
+      end
+      if @metal
+         render partial: 'advance_lookup'
+      else
+         render status: :not_found, nothing:true
+      end
+   end
+   
    private
    def metal_params
       params.require(:metal).permit(:name, :metal_code, :metal_category_ids)

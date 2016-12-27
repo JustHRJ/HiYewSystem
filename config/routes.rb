@@ -17,6 +17,8 @@ get 'metals/:id/pair/edit', to: 'metals#editPair', as: 'edit_metal_pair'
 post 'metals/:id/pair/edit', to: 'metals#updatePair'
  
 get 'search_metals', to: 'metals#search'
+get 'search_advance_metals', to: 'metals#search_advance_metal'
+get 'metals_advance_search', to: 'metals#advance_search'
 end
 
 

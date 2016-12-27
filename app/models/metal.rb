@@ -17,7 +17,7 @@ class Metal < ActiveRecord::Base
     
     
     def self.search_by_name(param)
-        return User.none if param.blank?
+        return Metal.none if param.blank?
         param.strip!
         param.downcase!
         (name_matches(param)).uniq        

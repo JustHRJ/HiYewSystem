@@ -1,0 +1,46 @@
+<div id = 'metal-lookup'>
+    <h3>Search for metals</h3>
+    <%= form_tag search_advance_metals_path, remote: true, method: :get, id: 'metal-lookup-form' do %>
+        <div class ='form-group row no-padding text-center col-md-12'>
+            <div class = 'col-md-10'>
+                <%= number_field :iron, params[:iron], placeholder: 'Iron', autofocus: true, class: 'form-control', :step => 0.01, :min => 0 %>
+                <%= number_field :calcium, params[:calcium], placeholder: 'Calcium', class: 'form-control', :step => 0.01, :min => 0 %>
+                <%= number_field :potassium, params[:potassium], placeholder: 'Potassium', class: 'form-control', :step => 0.01, :min => 0 %>
+                <%= number_field :others, params[:others], placeholder: 'Others', class: 'form-control', :step => 0.01, :min => 0 %>
+                
+            </div>
+            <div class = 'col-md-2'>
+                <%= button_tag(type: :submit, class: 'btn btn-lg btn-success') do %>
+                    <i class = 'fa fa-search'>
+                    </i>Look up a metal
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+    
+    <%= render 'common/spinner' %>
+
+    <% if @metal %>
+    <h3>Search Results</h3>
+        <% if @metal.size > 0 %>
+            <div id = 'friend-lookup-results' class = 'well results-block col-md-12'>
+                <table class = 'search-results-table col-md-12'>
+                    <% @metal.each do |metal| %>
+                    <tr>
+                       <td>
+                           <%= link_to metal.name, metal_path(metal)%>
+                       </td>
+                    </tr>
+                    <% end %>
+                </table>
+            </div>
+        <% else %>
+            <p class = 'lead col-md-12'>
+                No Match
+            </p>    
+        <% end %>
+    <% end %>
+    
+    <div id = 'metal-lookup-errors'>
+    </div>
+</div>
