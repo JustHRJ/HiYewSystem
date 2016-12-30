@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
     before_save :check_complete
-    
+    has_many :images
     has_many :project_logs
     
     validates :name, presence: true, uniqueness: {case_sensitive: false }
