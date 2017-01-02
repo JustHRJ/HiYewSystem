@@ -9,7 +9,7 @@
                 <%= text_field_tag :metal, params[:metal], placeholder: 'Name of metal', autofocus: true, class: 'form-control search-box input-lg' %>
                 
             </div>
-            <div class = 'col-md-2'>
+            <div class = 'col-md-1'>
                 <%= button_tag(type: :submit, class: 'btn btn-lg btn-success') do %>
                     <i class = 'fa fa-search'>
                     </i>Look up a metal
@@ -17,6 +17,10 @@
             </div>
         </div>
     <% end %>
+    
+    <div align = 'center'>
+        <%= link_to "Advance Search", metals_advance_search_path, class: 'btn btn-lg btn-primary' %>
+    </div>
     
     <%= render 'common/spinner' %>
 
