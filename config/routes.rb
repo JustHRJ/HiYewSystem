@@ -11,12 +11,15 @@ resources :metal_categories, except: [:destroy]
 resources :projects, except: [:destroy] do
  resources :project_logs
  resources :images
+ resources :costs
 end
  
 get 'metals/:id/pair', to: 'metals#pair', as: 'new_metal_pair'
 post 'metals/:id/pair', to: 'metals#pairing'
 get 'metals/:id/pair/edit', to: 'metals#editPair', as: 'edit_metal_pair'
 post 'metals/:id/pair/edit', to: 'metals#updatePair'
+
+get 'search_projects', to: 'projects#search'
  
 get 'search_metals', to: 'metals#search'
 get 'search_advance_metals', to: 'metals#search_advance_metal'

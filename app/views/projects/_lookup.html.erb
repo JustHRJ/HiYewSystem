@@ -1,0 +1,47 @@
+<div id = 'project-lookup'>
+    
+    <h3>Search for projects</h3>
+    
+    <%= form_tag search_projects_path, remote: true, method: :get, id: 'project-lookup-form' do %>
+    
+        <div class ='form-group row no-padding text-center col-md-12'>
+            <div class = 'col-md-10'>
+                <%= text_field_tag :project, params[:project], placeholder: 'Search "completed" or "incompleted", or type name of project' , autofocus: true, class: 'form-control search-box input-lg' %>
+                
+            </div>
+            <div class = 'col-md-1'>
+                <%= button_tag(type: :submit, class: 'btn btn-lg btn-success') do %>
+                    <i class = 'fa fa-search'>
+                    </i>Look up a project
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+    
+    
+    <%= render 'common/spinner' %>
+
+    <% if @project %>
+    <h3>Search Results</h3>
+        <% if @project.size > 0 %>
+            <div id = 'friend-lookup-results' class = 'well results-block col-md-12'>
+                <table class = 'search-results-table col-md-12'>
+                    <% @project.each do |project| %>
+                    <tr>
+                       <td>
+                           <%= link_to project.name, project_path(project)%>
+                       </td>
+                    </tr>
+                    <% end %>
+                </table>
+            </div>
+        <% else %>
+            <p class = 'lead col-md-12'>
+                No Match
+            </p>    
+        <% end %>
+    <% end %>
+    
+    <div id = 'project-lookup-errors'>
+    </div>
+</div>

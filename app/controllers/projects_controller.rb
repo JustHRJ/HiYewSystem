@@ -36,7 +36,24 @@ class ProjectsController < ApplicationController
         else
            render 'edit'
         end
-       
+   end
+   
+   def search
+        if params[:project]
+            if params[:project]  == 'completed'
+               @project = Project.where(:project_complete => true)
+               elsif params[:project] == 'incompleted'
+                @project = Project.where(:project_complete => false)   
+               else
+                @project = Project.search_by_name(params[:project])
+            end
+            
+            if @project
+                render partial: 'lookup'
+            else
+                render status: :not_found, nothing:true
+            end
+        end
    end
     
     

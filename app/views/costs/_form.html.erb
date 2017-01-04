@@ -1,0 +1,41 @@
+<%= form_for :cost, :html => { :class => "form-horizontal cost" }, url: project_costs_path do |f| %>
+
+  <% if @cost.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@cost.errors.count, "error") %> prohibited this cost from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @cost.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :description, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :description, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:description) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :cost, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.number_field :cost, :class => 'form-control', :step => 0.01 %>
+    </div>
+    <%=f.error_span(:cost) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                project_costs_path(@project), :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

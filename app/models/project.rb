@@ -2,7 +2,7 @@ class Project < ActiveRecord::Base
     before_save :check_complete
     has_many :images
     has_many :project_logs
-    
+    has_many :costs
     validates :name, presence: true, uniqueness: {case_sensitive: false }
     validates :description, presence:true
     
@@ -14,6 +14,20 @@ class Project < ActiveRecord::Base
        else
            self.completed_time = nil
        end
-       puts 'went in here'
+    end
+    
+    def self.search_by_name(param)
+        return Project.none if param.blank?
+        param.strip!
+        param.downcase!
+        (name_matches('name', param)).uniq
+    end
+    
+    def self.name_matches(name, param)
+         matches(name, param)
+    end
+    
+    def self.matches(field_name, param)
+        where("lower(#{field_name}) like ?", "%#{param}%")
     end
 end

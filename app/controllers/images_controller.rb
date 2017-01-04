@@ -47,15 +47,16 @@ class ImagesController < ApplicationController
   # PATCH/PUT /images/1.json
   def update
     @project = Project.find(params[:project_id])
-    respond_to do |format|
+
       if @image.update(image_params)
-        format.html { redirect_to project_images_path, notice: 'Image was successfully updated.' }
-        format.json { render :show, status: :ok, location: @image }
+        flash[:success] = 'Image successfully updated'
+        redirect_to project_image_path(@project, @image)
+        # format.html { redirect_to project_images_path, notice: 'Image was successfully updated.' }
+        # format.json { render :show, status: :ok, location: @image }
       else
         format.html { render :edit }
         format.json { render json: @image.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # DELETE /images/1

@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161230080311) do
+ActiveRecord::Schema.define(version: 20170104040121) do
+
+  create_table "costs", force: :cascade do |t|
+    t.string   "description"
+    t.float    "cost"
+    t.integer  "project_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "costs", ["project_id"], name: "index_costs_on_project_id"
 
   create_table "images", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +29,10 @@ ActiveRecord::Schema.define(version: 20161230080311) do
     t.integer  "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "picture2"
+    t.string   "picture3"
+    t.string   "picture4"
+    t.string   "picture5"
   end
 
   add_index "images", ["project_id"], name: "index_images_on_project_id"
