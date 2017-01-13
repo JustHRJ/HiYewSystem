@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
  
- 
-
 
 resources :customers do
-    resources :payments  
+    resources :payments
+    get 'accounts', to: "accounts#index", as: "accounts"
 end
 
 root 'pages#home'

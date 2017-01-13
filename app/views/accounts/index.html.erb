@@ -1,0 +1,88 @@
+<h1 align = 'center'>Accounts for <%= @customer.name %></h1>
+
+
+<h3>Project Cost Incurred</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Project Name</th>
+            <th>Cost Description</th>
+            <th>Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if @projects.size < 1 %>
+           <tr>
+                <td colspan = '3'><strong>There are no projects and thus no cost incurred</strong></td>   
+           </tr>
+        <% else %>
+            <% @projects.each do |project| %>
+                <% if project.costs.size < 1 %>
+                    <tr>
+                        <td>
+                            <%= project.name %>
+                        </td>
+                        <td colspan = '2'>
+                            <strong> There are no cost entered</strong>
+                        </td>
+                    </tr>
+                <% else %>
+                    <% project.costs.each do |cost| %>
+                        <tr>
+                            <td><%= project.name %></td>
+                            <td><%= cost.description %></td>
+                            <td><%= cost.cost %></td>
+                        </tr>
+                    <% end %>
+                <% end %>
+            <% end %>
+        <% end %>
+    </tbody>
+</table>
+Total Cost Incurred: <%= Customer.calculate_total_cost_incurred(@customer) %>
+
+
+<h3>Customer Payments</h3>
+<table class = 'table table-striped'>
+    <thead>
+        <tr>
+            <th>Invoice Number</th>
+            <th>Payment Date</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if @payments.size < 1 %>
+            <tr>
+                <td colspan = '3'><strong>There are no payments</strong></td>
+            </tr>
+        <% else %>
+            <% @payments.each do |payment| %>
+                <tr>
+                    <td><%= payment.invoice_no %></td>
+                    <td><%= payment.payment_date %></td>
+                    <td><%= payment.amount %></td>
+                </tr>
+            <% end %>
+        <% end %>
+    </tbody>
+</table>
+Total Payments: <%= Customer.calculate_total_payment(@customer) %>
+
+
+<h4>Summary</h4>
+<% if !!@customer.limit? %>
+    <p>Original Limit: <%= @customer.limit %></p>
+        <% if (Customer.calculate_total_payment(@customer) - Customer.calculate_total_cost_incurred(@customer) < 0) %>
+            <p>Amount outstanding by customer: <%= (Customer.calculate_total_cost_incurred(@customer) - Customer.calculate_total_payment(@customer)).round(2) %> </p>
+            <p>Adjusted Limit: <%= (@customer.limit - (Customer.calculate_total_cost_incurred(@customer) - Customer.calculate_total_payment(@customer))).round(2) %></p>
+            <% if (@customer.limit - (Customer.calculate_total_cost_incurred(@customer) - Customer.calculate_total_payment(@customer))).round(2) < 0 %>
+                <p style ='color: red;'>Please request payment, etc</p>
+            <% end %>
+        <% else %>
+            <p>Amount prepaid by customer: <%= (Customer.calculate_total_payment(@customer) - Customer.calculate_total_cost_incurred(@customer)).round(2) %></p>
+            <p>Adjusted Limit: <%= (@customer.limit + (Customer.calculate_total_payment(@customer) - Customer.calculate_total_cost_incurred(@customer))).round(2) %></p>
+        <% end %>
+<% else %>
+    No Limit has been set
+<% end %>
