@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
     has_many :images
     has_many :project_logs
     has_many :costs
+    belongs_to :customer
     validates :name, presence: true, uniqueness: {case_sensitive: false }
     validates :description, presence:true
     
@@ -29,5 +30,9 @@ class Project < ActiveRecord::Base
     
     def self.matches(field_name, param)
         where("lower(#{field_name}) like ?", "%#{param}%")
+    end
+    
+    def self.customer_options
+       Customer.all.map {|customer| customer.name }
     end
 end

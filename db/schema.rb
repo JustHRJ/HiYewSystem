@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170104040121) do
+ActiveRecord::Schema.define(version: 20170113115050) do
 
   create_table "costs", force: :cascade do |t|
     t.string   "description"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 20170104040121) do
   end
 
   add_index "costs", ["project_id"], name: "index_costs_on_project_id"
+
+  create_table "customers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "postal_code"
+    t.string   "contact_number"
+    t.float    "limit"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "images", force: :cascade do |t|
     t.string   "name"
@@ -70,6 +81,15 @@ ActiveRecord::Schema.define(version: 20170104040121) do
     t.integer  "metal_composite_id"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.string   "invoice_no"
+    t.float    "amount"
+    t.integer  "customer_id"
+    t.date     "payment_date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "project_logs", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -87,6 +107,7 @@ ActiveRecord::Schema.define(version: 20170104040121) do
     t.datetime "updated_at"
     t.boolean  "project_complete", default: false
     t.datetime "completed_time"
+    t.integer  "customer_id"
   end
 
 end

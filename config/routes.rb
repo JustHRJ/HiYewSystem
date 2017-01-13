@@ -2,16 +2,21 @@ Rails.application.routes.draw do
  
  
 
+
+resources :customers do
+    resources :payments  
+end
+
 root 'pages#home'
 resources :metals do
- resources :metal_associates
+    resources :metal_associates
 end
 
 resources :metal_categories, except: [:destroy]
 resources :projects, except: [:destroy] do
- resources :project_logs
- resources :images
- resources :costs
+    resources :project_logs
+    resources :images
+    resources :costs
 end
  
 get 'metals/:id/pair', to: 'metals#pair', as: 'new_metal_pair'

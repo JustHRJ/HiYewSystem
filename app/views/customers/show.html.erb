@@ -1,0 +1,46 @@
+<%- model_class = Customer -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @customer.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address1) %>:</strong></dt>
+  <dd><%= @customer.address1 %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address2) %>:</strong></dt>
+  <dd><%= @customer.address2 %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:postal_code) %>:</strong></dt>
+  <dd><%= @customer.postal_code %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:contact_number) %>:</strong></dt>
+  <dd><%= @customer.contact_number %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:limit) %>:</strong></dt>
+  <dd><%= @customer.limit %></dd>
+</dl>
+
+<h3> Projects </h3>
+
+<% if @customer.projects.size < 1 %>
+    <strong>Customer does not have any current or past projects</strong>
+
+<% else %>
+
+    <div>
+        <% @customer.projects.each do |project| %>
+            <%= link_to project.name, project_path(project) %>
+        <% end %>
+    </div>
+<% end %>
+
+
+<br/><br/>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              customers_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_customer_path(@customer), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              customer_path(@customer),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

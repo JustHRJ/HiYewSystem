@@ -6,6 +6,8 @@ class ProjectsController < ApplicationController
    
    def create
        @project = Project.new(project_params)
+       customer = Customer.find_by(:name => params[:project][:customer])
+       @project.customer = customer
        if @project.save
            flash[:success] = "Project has been successfully saved"
            redirect_to project_path(@project)
@@ -42,7 +44,7 @@ class ProjectsController < ApplicationController
         if params[:project]
             if params[:project]  == 'completed'
                @project = Project.where(:project_complete => true)
-               elsif params[:project] == 'incompleted'
+               elsif prarams[:project] == 'incompleted'
                 @project = Project.where(:project_complete => false)   
                else
                 @project = Project.search_by_name(params[:project])

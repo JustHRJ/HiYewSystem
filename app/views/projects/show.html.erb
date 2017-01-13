@@ -19,6 +19,9 @@
                  No
              <% end %>
          </p>
+         <p>
+             Customer: <%=link_to @project.customer.name, customer_path(@project.customer) %>
+         </p>
         <hr>
         <div class = 'row'>
             <%= link_to 'View all Images Uploaded', project_images_path(@project), class: 'btn btn-success btn-xs' %>

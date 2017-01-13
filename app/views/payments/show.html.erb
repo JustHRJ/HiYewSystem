@@ -1,0 +1,23 @@
+<%- model_class = Payment -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:invoice_no) %>:</strong></dt>
+  <dd><%= @payment.invoice_no %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:amount) %>:</strong></dt>
+  <dd><%= @payment.amount %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:payment_date) %>:</strong></dt>
+  <dd><%= @payment.payment_date %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              customer_payments_path(@customer), :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_customer_payment_path(@customer, @payment), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              customer_payment_path(@customer, @payment),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
