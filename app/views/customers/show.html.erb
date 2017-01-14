@@ -1,6 +1,7 @@
 <%- model_class = Customer -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+     <%= link_to "View Payments", customer_payments_path(@customer), class: 'btn btn-success'%>   <%= link_to "View Account", customer_accounts_path(@customer), class: 'btn btn-primary' %>
 </div>
 
 <dl class="dl-horizontal">
@@ -34,6 +35,7 @@
 
 
 <br/><br/>
+
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               customers_path, :class => 'btn btn-default'  %>

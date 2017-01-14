@@ -2,6 +2,8 @@ class Customer < ActiveRecord::Base
     has_many :projects
     has_many :payments
     
+    validates_uniqueness_of :name
+    
     
     def self.calculate_total_cost_incurred(customer)
         projects = customer.projects

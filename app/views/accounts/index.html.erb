@@ -1,4 +1,4 @@
-<h1 align = 'center'>Accounts for <%= @customer.name %></h1>
+<h1>Accounts for <%= @customer.name %> <%= link_to "Back to Customer", customer_path(@customer), class: 'btn btn-primary' %></h1>
 
 
 <h3>Project Cost Incurred</h3>
@@ -86,3 +86,5 @@ Total Payments: <%= Customer.calculate_total_payment(@customer) %>
 <% else %>
     No Limit has been set
 <% end %>
+
+<br/>
