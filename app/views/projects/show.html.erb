@@ -3,7 +3,7 @@
 
  <div class = 'container'>
     <div class = 'well col-md-8 col-md-offset-2'>
-        <p align ='left'><%= @project.description %></p>
+        <p align ='left'><%= simple_format(@project.description) %></p>
                 <hr>
         <p>
             Start Date: <%= @project.start_date.strftime("%d-%B-%y") %>
